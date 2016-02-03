@@ -14,11 +14,10 @@ It pretty much translates to the Clojure API 1-1, you just have to use a functio
 ```
 
 ```javascript
-forc([
-  'x', [1, 2, 3, 4, 5],
-  ':let', ['y', ({x}) => x * x,
-           'z', ({x}) => x * x * x]
-], ({x, y}) => [x, y])
+forc(['x', [1, 2, 3, 4, 5],
+      ':let', ['y', ({x}) => x * x,
+               'z', ({x}) => x * x * x]],
+  ({x, y}) => [x, y])
 ```
 
 Using ES6 destructuring and arrow functions obviously makes this bearable, without that it'd be a pretty big mess. The Clojure syntax still looks better, but this could help a lot if you're dealing with a lot of nested mapping or filters.
