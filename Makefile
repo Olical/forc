@@ -1,4 +1,4 @@
-.PHONY: default lint test
+.PHONY: default lint test test-watch build
 
 bin = ./node_modules/.bin
 
