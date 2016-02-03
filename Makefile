@@ -10,5 +10,8 @@ lint:
 test: lint
 	$(bin)/babel-tape-runner test/**/*.js | $(bin)/faucet
 
+test-watch:
+	$(bin)/nodemon --exec "make test"
+
 build:
 	$(bin)/babel src -d lib
