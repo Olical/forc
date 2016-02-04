@@ -16,7 +16,7 @@ It pretty much translates to the Clojure API 1-1, you just have to use a functio
             z (* x x x)]]
   [x y z])
 
-// ([1 1 1] [2 4 8] [3 9 27] [4 16 64] [5 25 125])
+;; ([1 1 1] [2 4 8] [3 9 27] [4 16 64] [5 25 125])
 ```
 
 ### JavaScript
