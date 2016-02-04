@@ -4,23 +4,33 @@
 
 Clone of [Clojure's for][clj-for] in JavaScript, this gives you powerful list comprehension without a terse API. It's a declarative code-as-data approach which may seem odd to those that haven't written any kind of lisp before.
 
-It pretty much translates to the Clojure API 1-1, you just have to use a function wherever you'd use a binding.
+## Syntax
+
+It pretty much translates to the Clojure API 1-1, you just have to use a function wherever you'd use a binding. Clojure allows you to use lazy sequences, so `forc` lets you use any iterable, including generators.
+
+### Clojure
 
 ```clojure
 (for [x (range 1 6)
       :let [y (* x x)
             z (* x x x)]]
   [x y z])
+
+// ([1 1 1] [2 4 8] [3 9 27] [4 16 64] [5 25 125])
 ```
+
+### JavaScript
 
 ```javascript
 forc(['x', [1, 2, 3, 4, 5],
       ':let', ['y', ({x}) => x * x,
                'z', ({x}) => x * x * x]],
-  ({x, y}) => [x, y])
+  ({x, y, z}) => [x, y, z])
+
+// [[1, 1, 1], [2, 4, 8], [3, 9, 27], [4, 16, 64], [5, 25, 125]]
 ```
 
-Using ES6 destructuring and arrow functions obviously makes this bearable, without that it'd be a pretty big mess. The Clojure syntax still looks better, but this could help a lot if you're dealing with a lot of nested mapping or filters.
+Using ES6 destructuring and arrow functions obviously makes this bearable, without that it'd be fairly messy to write. The Clojure syntax is still better, but this could help a lot if you're dealing with a lot of nested mapping or filters.
 
 ## Author
 
