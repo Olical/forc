@@ -16,7 +16,7 @@ test('empty expressions yield empty results', t => {
 
 test('uneven expressions throw', t => {
   t.plan(1)
-  t.throws(() => forc(['bad']), /even number of forms/, 'needs an even number of binding forms')
+  t.throws(() => [...forc(['bad'])], /even number of forms/, 'needs an even number of binding forms')
 })
 
 test('simple incrementing expression', t => {
