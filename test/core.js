@@ -98,7 +98,7 @@ test('let', t => {
     'x', [1, 2, 3, 4, 5],
     ':let', ['y', ({x}) => x * x,
              'z', ({x}) => x * x * x]
-  ], ({x, y}) => [x, y])
+  ], ({x, y, z}) => [x, y, z])
   t.deepEqual([...actual], [[1, 1, 1], [2, 4, 8], [3, 9, 27], [4, 16, 64], [5, 25, 125]])
 })
 
@@ -130,6 +130,6 @@ test('passing generators', t => {
   t.deepEqual([...genRange(4)], [0, 1, 2, 3, 4], 'generator generated 0 -> 4')
   const actual = forc([
     'x', genRange(4)
-  ], ({x}) => x + 1)
+  ])
   t.deepEqual([...actual], [1, 2, 3, 4, 5], 'forc passed the generated values through')
 })
