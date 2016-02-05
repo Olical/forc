@@ -6,7 +6,9 @@ Clone of [Clojure's for][clj-for] in JavaScript, this gives you powerful list co
 
 ## Syntax
 
-It pretty much translates to the Clojure API 1-1, you just have to use a function wherever you'd use a binding. Clojure allows you to use lazy sequences, so `forc` lets you use any iterable, including generators.
+It pretty much translates to the Clojure API 1-1, including the laziness, you just have to use a function wherever you'd use a binding. Clojure allows you to use [lazy sequences][lazyseq], so `forc` lets you use any [iterable][].
+
+This applies to every single thing you pass or receive from `forc`, including the actual arguments lists. Every "array" you see is actually treated as an iterable so you can generate the entire thing on the fly.
 
 ### Clojure
 
@@ -27,6 +29,8 @@ forc(['x', [1, 2, 3, 4, 5],
                'z', ({x}) => x * x * x]],
   ({x, y, z}) => [x, y, z])
 
+// It returns a generator, but you can resolve it all at once with [...result]
+// I'd recommend working with it as an iterable though, keeping things lazy is a good idea.
 // [[1, 1, 1], [2, 4, 8], [3, 9, 27], [4, 16, 64], [5, 25, 125]]
 ```
 
@@ -50,3 +54,5 @@ Do what you want. Learn as much as you can. Unlicense more software.
 [author-site]: http://oli.me.uk/
 [author-twitter]: https://twitter.com/OliverCaldwell
 [clj-for]: https://clojuredocs.org/clojure.core/for
+[iterable]: https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Iteration_protocols
+[lazyseq]: http://clojure.org/reference/sequences
