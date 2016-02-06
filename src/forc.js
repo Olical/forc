@@ -1,4 +1,6 @@
 import pairs from './utils/pairs'
+import resolve from './utils/resolve'
+import applyLets from './utils/applyLets'
 import {isIterable, isFunction} from './utils/typeChecks'
 
 export default function * forc (seq, body) {
@@ -24,10 +26,9 @@ function * states (paired, state) {
     const [key, value] = head
 
     if (key === ':let') {
-      const lets = pairs(value)
-      yield* states(tail, applyLets(lets, state))
+      yield* states(tail, applyLets(value, state))
     } else {
-      const iter = isFunction(value) ? value(state) : value
+      const iter = resolve(value, state)
 
       for (const item of iter) {
         state[key] = item
@@ -37,12 +38,4 @@ function * states (paired, state) {
   } else if (state) {
     yield state
   }
-}
-
-function applyLets (lets, state) {
-  for (const [key, value] of lets) {
-    state[key] = isFunction(value) ? value(state) : value
-  }
-
-  return state
 }
