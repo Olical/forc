@@ -10,11 +10,25 @@ export default function * forc (seq, body) {
     throw new Error('The second argument must be a function')
   }
 
-  for (const [key, value] of pairs(seq)) {
-    const iter = isFunction(value) ? value(/* bindings... */) : value
+  for (const state of states(pairs(seq))) {
+    yield body(state)
+  }
+}
+
+function * states (paired, state) {
+  const [head, ...tail] = paired
+
+  if (head) {
+    state = state || {}
+
+    const [key, value] = head
+    const iter = isFunction(value) ? value(state) : value
 
     for (const item of iter) {
-      yield body({[key]: item})
+      state[key] = item
+      yield* states(tail, state)
     }
+  } else if (state) {
+    yield state
   }
 }
