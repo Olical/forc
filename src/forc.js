@@ -22,13 +22,27 @@ function * states (paired, state) {
     state = state || {}
 
     const [key, value] = head
-    const iter = isFunction(value) ? value(state) : value
 
-    for (const item of iter) {
-      state[key] = item
-      yield* states(tail, state)
+    if (key === ':let') {
+      const lets = pairs(value)
+      yield* states(tail, applyLets(lets, state))
+    } else {
+      const iter = isFunction(value) ? value(state) : value
+
+      for (const item of iter) {
+        state[key] = item
+        yield* states(tail, state)
+      }
     }
   } else if (state) {
     yield state
   }
+}
+
+function applyLets (lets, state) {
+  for (const [key, value] of lets) {
+    state[key] = isFunction(value) ? value(state) : value
+  }
+
+  return state
 }
