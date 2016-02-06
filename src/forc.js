@@ -26,14 +26,14 @@ function * states (paired, state) {
     const [key, value] = head
 
     if (key === ':let') {
-      yield* states(tail, applyLets(value, state))
+      return yield* states(tail, applyLets(value, state))
     } else if (key === ':when') {
       if (resolve(value, state)) {
-        yield* states(tail, state)
+        return yield* states(tail, state)
       }
     } else if (key === ':while') {
       if (resolve(value, state)) {
-        yield* states(tail, state)
+        return yield* states(tail, state)
       } else {
         return true
       }
@@ -50,6 +50,6 @@ function * states (paired, state) {
       }
     }
   } else if (state) {
-    yield state
+    return yield state
   }
 }
