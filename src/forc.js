@@ -31,6 +31,10 @@ function * states (paired, state) {
       if (resolve(value, state)) {
         yield* states(tail, state)
       }
+    } else if (key === ':while') {
+      if (resolve(value, state)) {
+        yield* states(tail, state)
+      }
     } else {
       const iter = resolve(value, state)
 

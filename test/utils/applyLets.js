@@ -25,3 +25,10 @@ test('resolves from previous state', t => {
     baz: 20
   })
 })
+
+test('uneven lets throw', t => {
+  t.plan(1)
+  t.throws(() => {
+    applyLets(['bar'], {foo: true})
+  }, /even number of forms/)
+})

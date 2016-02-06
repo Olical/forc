@@ -106,8 +106,10 @@ test('let', t => {
 test('uneven let', t => {
   t.plan(1)
   t.throws(() => {
-    forc(['x', [1],
-          ':let', ['bad']])
+    [...forc([
+      'x', [1],
+      ':let', ['bad']
+    ], ({x}) => x)]
   }, /even number of forms/, 'needs an even number of binding forms')
 })
 
@@ -131,6 +133,6 @@ test('passing generators', t => {
   t.deepEqual([...genRange(4)], [0, 1, 2, 3, 4], 'generator generated 0 -> 4')
   const actual = forc([
     'x', genRange(4)
-  ])
+  ], ({x}) => x + 1)
   t.deepEqual([...actual], [1, 2, 3, 4, 5], 'forc passed the generated values through')
 })
