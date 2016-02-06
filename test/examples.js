@@ -44,7 +44,8 @@ test('infinite sequences', t => {
   t.plan(1)
   const actual = forc([
     'n', numbers(),
-    ':while', ({n}) => (n * n) < 100
-  ], ({n}) => n * n)
+    ':let', ['square', ({n}) => n * n],
+    ':while', ({square}) => square < 100
+  ], ({square}) => square)
   t.deepEqual([...actual], [0, 1, 4, 9, 16, 25, 36, 49, 64, 81])
 })

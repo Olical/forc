@@ -100,8 +100,9 @@ function * numbers () {
 
 forc([
   'n', numbers(),
-  ':while', ({n}) => (n * n) < 100
-], ({n}) => n * n)
+  ':let', ['square', ({n}) => n * n],
+  ':while', ({square}) => square < 100
+], ({square}) => square)
 
 // Results in only those whos square is < 100
 // [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
