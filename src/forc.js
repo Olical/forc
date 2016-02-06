@@ -34,13 +34,19 @@ function * states (paired, state) {
     } else if (key === ':while') {
       if (resolve(value, state)) {
         yield* states(tail, state)
+      } else {
+        return true
       }
     } else {
       const iter = resolve(value, state)
 
       for (const item of iter) {
         state[key] = item
-        yield* states(tail, state)
+        const stop = yield* states(tail, state)
+
+        if (stop === true) {
+          break
+        }
       }
     }
   } else if (state) {
