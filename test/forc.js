@@ -9,7 +9,7 @@ test('definition', t => {
 test('empty expressions yield empty results', t => {
   t.plan(1)
   const actual = forc([], () => {
-    throw new Error('should not be called')
+    t.fail('should not be called')
   })
   t.deepEqual([...actual], [], 'empty result list')
 })
@@ -18,11 +18,6 @@ test('bad arguments throw', t => {
   t.plan(2)
   t.throws(() => [...forc(null, () => {})], /first argument must be iterable/, 'first must be iterable')
   t.throws(() => [...forc([], null)], /second argument must be a function/, 'second must be a function')
-})
-
-test('uneven expressions throw', t => {
-  t.plan(1)
-  t.throws(() => [...forc(['bad'], () => {})], /even number of forms/, 'needs an even number of binding forms')
 })
 
 test('simple incrementing expression', t => {

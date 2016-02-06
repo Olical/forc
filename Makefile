@@ -1,17 +1,18 @@
 .PHONY: default lint test test-watch build
 
-bin = ./node_modules/.bin
+BIN = ./node_modules/.bin
+TESTS = $(shell find test/ -name '*.js')
 
 default: test build
 
 lint:
-	$(bin)/standard
+	$(BIN)/standard
 
 test: lint
-	$(bin)/babel-tape-runner test/**/*.js | $(bin)/faucet
+	$(BIN)/babel-tape-runner $(TESTS) | $(BIN)/faucet
 
 test-watch:
-	$(bin)/nodemon --exec "npm test"
+	$(BIN)/nodemon --exec "npm test"
 
 build:
-	$(bin)/babel src -d lib
+	$(BIN)/babel src -d lib
