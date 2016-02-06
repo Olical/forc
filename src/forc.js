@@ -8,14 +8,6 @@ export default function * forc (bindings, body) {
   }
 }
 
-function isFunction (value) {
-  return typeof value === 'function'
-}
-
-function isUndefined (value) {
-  return typeof value === 'undefined'
-}
-
 function * pairs (iter) {
   let prev
 
@@ -31,4 +23,12 @@ function * pairs (iter) {
   if (!isUndefined(prev)) {
     throw new Error(`Iterable pairs require an even number of forms (last key was "${prev}")`)
   }
+}
+
+function isFunction (value) {
+  return typeof value === 'function'
+}
+
+function isUndefined (value) {
+  return typeof value === 'undefined'
 }
