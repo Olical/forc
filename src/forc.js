@@ -27,6 +27,10 @@ function * states (paired, state) {
 
     if (key === ':let') {
       yield* states(tail, applyLets(value, state))
+    } else if (key === ':when') {
+      if (resolve(value, state)) {
+        yield* states(tail, state)
+      }
     } else {
       const iter = resolve(value, state)
 
