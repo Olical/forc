@@ -38,8 +38,5 @@
     "nodemon": "^1.8.1",
     "standard": "^6.0.3",
     "tape": "^4.4.0"
-  },
-  "dependencies": {
-    "babel-cli": "^6.4.5"
   }
 }
