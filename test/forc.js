@@ -1,12 +1,12 @@
 import test from 'tape'
 import forc from '../src/forc'
 
-test('definition', t => {
+test('definition', (t) => {
   t.plan(1)
   t.equal(typeof forc, 'function', 'forc is a function')
 })
 
-test('empty expressions yield empty results', t => {
+test('empty expressions yield empty results', (t) => {
   t.plan(1)
   const actual = forc([], () => {
     t.fail('should not be called')
@@ -14,13 +14,13 @@ test('empty expressions yield empty results', t => {
   t.deepEqual([...actual], [], 'empty result list')
 })
 
-test('bad arguments throw', t => {
+test('bad arguments throw', (t) => {
   t.plan(2)
   t.throws(() => [...forc(null, () => {})], /first argument must be iterable/, 'first must be iterable')
   t.throws(() => [...forc([], null)], /second argument must be a function/, 'second must be a function')
 })
 
-test('simple incrementing expression', t => {
+test('simple incrementing expression', (t) => {
   t.plan(1)
   const actual = forc([
     'x', () => [10, 20, 30]
@@ -28,7 +28,7 @@ test('simple incrementing expression', t => {
   t.deepEqual([...actual], [11, 21, 31], 'values were incremented')
 })
 
-test('shorthand incrementing expression (no function)', t => {
+test('shorthand incrementing expression (no function)', (t) => {
   t.plan(1)
   const actual = forc([
     'x', [10, 20, 30]
@@ -36,7 +36,7 @@ test('shorthand incrementing expression (no function)', t => {
   t.deepEqual([...actual], [11, 21, 31], 'values were incremented')
 })
 
-test('multiple expressions', t => {
+test('multiple expressions', (t) => {
   t.plan(1)
   const actual = forc([
     'x', ['a', 'b', 'c'],
@@ -45,7 +45,7 @@ test('multiple expressions', t => {
   t.deepEqual([...actual], [['a', 1], ['a', 2], ['a', 3], ['b', 1], ['b', 2], ['b', 3], ['c', 1], ['c', 2], ['c', 3]], 'values were zipped up')
 })
 
-test('using previous expressions', t => {
+test('using previous expressions', (t) => {
   t.plan(1)
   const actual = forc([
     'x', [1, 2, 3],
@@ -54,7 +54,7 @@ test('using previous expressions', t => {
   t.deepEqual([...actual], [[1, 2], [2, 3], [3, 4]], 'values were zipped and incremented')
 })
 
-test('let', t => {
+test('let', (t) => {
   t.plan(1)
   const actual = forc([
     'x', [1, 2, 3],
@@ -63,7 +63,7 @@ test('let', t => {
   t.deepEqual([...actual], [[1, 2], [2, 3], [3, 4]], 'values were zipped and added')
 })
 
-test('let and when', t => {
+test('let and when', (t) => {
   t.plan(1)
   const actual = forc([
     'x', [0, 1, 2, 3, 4, 5],
@@ -73,7 +73,7 @@ test('let and when', t => {
   t.deepEqual([...actual], [0, 6, 12], 'multiplied by 3 then even are returned')
 })
 
-test('when', t => {
+test('when', (t) => {
   t.plan(1)
   const actual = forc([
     'x', [0, 1, 2],
@@ -83,7 +83,7 @@ test('when', t => {
   t.deepEqual([...actual], [[0, 1], [0, 2], [1, 0], [1, 2], [2, 0], [2, 1]])
 })
 
-test('while', t => {
+test('while', (t) => {
   t.plan(1)
   const actual = forc([
     'x', [0, 1, 2],
@@ -93,7 +93,7 @@ test('while', t => {
   t.deepEqual([...actual], [[1, 0], [2, 0], [2, 1]])
 })
 
-test('let', t => {
+test('let', (t) => {
   t.plan(1)
   const actual = forc([
     'x', [1, 2, 3, 4, 5],
@@ -103,7 +103,7 @@ test('let', t => {
   t.deepEqual([...actual], [[1, 1, 1], [2, 4, 8], [3, 9, 27], [4, 16, 64], [5, 25, 125]])
 })
 
-test('uneven let', t => {
+test('uneven let', (t) => {
   t.plan(1)
   t.throws(() => {
     [...forc([
@@ -113,7 +113,7 @@ test('uneven let', t => {
   }, /even number of forms/, 'needs an even number of binding forms')
 })
 
-test('empty let', t => {
+test('empty let', (t) => {
   t.plan(1)
   const actual = forc([
     'x', [1, 2, 3, 4, 5],
@@ -122,7 +122,7 @@ test('empty let', t => {
   t.deepEqual([...actual], [2, 3, 4, 5, 6])
 })
 
-test('passing generators', t => {
+test('passing generators', (t) => {
   function * genRange (n) {
     for (let i = 0; i <= n; i++) {
       yield i

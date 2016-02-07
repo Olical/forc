@@ -1,7 +1,7 @@
 import test from 'tape'
 import forc from '../src/forc'
 
-test('map', t => {
+test('map', (t) => {
   t.plan(1)
   const actual = forc([
     'x', [60, 61, 62, 63, 64]
@@ -9,7 +9,7 @@ test('map', t => {
   t.deepEqual([...actual], ['<', '=', '>', '?', '@'])
 })
 
-test('filter', t => {
+test('filter', (t) => {
   function isEven (n) {
     return n % 2 === 0
   }
@@ -22,7 +22,7 @@ test('filter', t => {
   t.deepEqual([...actual], [2, 4, 6, 8, 10])
 })
 
-test('nested loops', t => {
+test('nested loops', (t) => {
   t.plan(1)
   const actual = forc([
     'x', [1, 2, 3],
@@ -32,7 +32,7 @@ test('nested loops', t => {
   t.deepEqual([...actual], [[1, 2], [1, 3], [2, 1], [2, 3], [3, 1], [3, 2]])
 })
 
-test('infinite sequences', t => {
+test('infinite sequences', (t) => {
   function * numbers () {
     let n = 0
 
