@@ -1,6 +1,4 @@
-# forc [![npm version](https://badge.fury.io/js/forc.svg)](http://badge.fury.io/js/forc) [![Build Status](https://travis-ci.org/Olical/forc.svg?branch=master)](https://travis-ci.org/Olical/forc) [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
-
-[![Gitter](https://badges.gitter.im/Olical/forc.svg)](https://gitter.im/Olical/forc?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+# forc [![npm version](https://badge.fury.io/js/forc.svg)](http://badge.fury.io/js/forc) [![Build Status](https://travis-ci.org/Olical/forc.svg?branch=master)](https://travis-ci.org/Olical/forc) [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard) [![Gitter](https://badges.gitter.im/Olical/forc.svg)](https://gitter.im/Olical/forc?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 Clone of [Clojure's for][clj-for] in JavaScript, this gives you powerful list comprehension without a terse API. It's a declarative code-as-data approach which may seem odd to those that haven't written any kind of lisp before.
 
