@@ -17,6 +17,7 @@ export default function * forc (seq, body) {
   }
 }
 
+// TODO: Rewrite this function to a little more elegant.
 function * states (paired, state) {
   const [head, ...tail] = paired
 
