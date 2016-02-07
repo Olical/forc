@@ -38,5 +38,8 @@
     "nodemon": "^1.8.1",
     "standard": "^6.0.3",
     "tape": "^4.4.0"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.3.14"
   }
 }
