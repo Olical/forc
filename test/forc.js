@@ -136,3 +136,35 @@ test('passing generators', (t) => {
   ], ({x}) => x + 1)
   t.deepEqual([...actual], [1, 2, 3, 4, 5], 'forc passed the generated values through')
 })
+
+test('while after let', (t) => {
+  t.plan(1)
+  const actual = forc([
+    'x', [0, 1, 2, 3, 4, 5],
+    ':let', ['y', ({x}) => x * 3],
+    ':while', ({y}) => y < 10
+  ], ({y}) => y)
+  t.deepEqual([...actual], [0, 3, 6, 9])
+})
+
+test('while, let and when in different orders', (t) => {
+  let actual
+  const expected = [0, 6]
+  t.plan(2)
+
+  actual = forc([
+    'x', [0, 1, 2, 3, 4, 5],
+    ':let', ['y', ({x}) => x * 3],
+    ':when', ({y}) => y % 2 === 0,
+    ':while', ({y}) => y < 10
+  ], ({y}) => y)
+  t.deepEqual([...actual], expected)
+
+  actual = forc([
+    'x', [0, 1, 2, 3, 4, 5],
+    ':let', ['y', ({x}) => x * 3],
+    ':while', ({y}) => y < 10,
+    ':when', ({y}) => y % 2 === 0
+  ], ({y}) => y)
+  t.deepEqual([...actual], expected)
+})
