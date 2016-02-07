@@ -4,7 +4,7 @@ Clone of [Clojure's for][clj-for] in JavaScript, this gives you powerful list co
 
 ## Syntax
 
-It pretty much translates to the Clojure API 1-1, including the laziness, you just have to use a function wherever you'd use a binding. Clojure allows you to use [lazy sequences][lazyseq], so `forc` lets you use *any* [iterable][].
+It pretty much translates to the Clojure API 1-1, including the laziness, you just have to use a function wherever you'd use a binding. Clojure allows you to use [lazy sequences][lazyseq], so `forc` lets you use *any* [iterable][], including generators.
 
 This applies to every single thing you pass or receive from `forc`, including the main expression list. Every "array" you see is actually treated as an iterable so you can generate the entire thing on the fly if you so wish.
 

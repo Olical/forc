@@ -10,14 +10,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://www.github.com/Olical/forc.git"
+    "url": "git+https://github.com/Olical/forc.git"
   },
   "keywords": [
     "for",
     "list",
     "comprehension",
-    "clojure"
+    "clojure",
+    "lazy",
+    "generator"
   ],
+  "homepage": "https://github.com/Olical/forc#readme",
   "license": "Unlicense",
   "author": {
     "name": "Oliver Caldwell",
@@ -35,5 +38,8 @@
     "nodemon": "^1.8.1",
     "standard": "^6.0.3",
     "tape": "^4.4.0"
+  },
+  "dependencies": {
+    "babel-cli": "^6.4.5"
   }
 }
