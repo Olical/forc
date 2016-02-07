@@ -1,6 +1,6 @@
 {
   "name": "forc",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Clone of Clojure list comprehension",
   "main": "lib/forc.js",
   "scripts": {
