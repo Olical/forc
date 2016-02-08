@@ -86,11 +86,11 @@ test('when', (t) => {
 test('while', (t) => {
   t.plan(1)
   const actual = forc([
-    'x', [0, 1, 2],
-    'y', [0, 1, 2],
+    'x', [1, 2, 3],
+    'y', [3, 2, 1],
     ':while', ({x, y}) => x !== y
   ], ({x, y}) => [x, y])
-  t.deepEqual([...actual], [[1, 0], [2, 0], [2, 1]])
+  t.deepEqual([...actual], [[1, 3], [1, 2]])
 })
 
 test('let', (t) => {
@@ -202,4 +202,22 @@ test('referencing a previous generator', (t) => {
     'y', ({x}) => [x]
   ], ({x, y}) => x + y)
   t.deepEqual([...actual], [2, 4, 6, 8, 10])
+})
+
+test('referencing a previous infinite generator', (t) => {
+  function * numbers () {
+    let n = 0
+
+    while (true) {
+      yield n++
+    }
+  }
+
+  t.plan(1)
+  const actual = forc([
+    'x', numbers(),
+    'y', ({x}) => [x],
+    ':while', ({x}) => x < 5
+  ], ({x, y}) => x + y)
+  t.deepEqual([...actual], [0, 2, 4, 6, 8])
 })

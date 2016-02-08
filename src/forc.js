@@ -47,7 +47,7 @@ function * states (paired, state) {
         const stop = yield * states(tail, state)
 
         if (stop === true) {
-          break
+          return stop
         }
       }
     }
