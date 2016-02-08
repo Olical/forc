@@ -168,3 +168,21 @@ test('while, let and when in different orders', (t) => {
   ], ({y}) => y)
   t.deepEqual([...actual], expected)
 })
+
+test('REALLY long loops do not throw', (t) => {
+  function * numbers () {
+    let n = 0
+
+    while (true) {
+      yield n++
+    }
+  }
+
+  t.plan(1)
+  t.doesNotThrow(() => {
+    [...forc([
+      'x', numbers(),
+      ':while', ({x}) => x < 100000
+    ], ({x}) => [x])]
+  })
+})
