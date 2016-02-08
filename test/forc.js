@@ -186,3 +186,20 @@ test('REALLY long loops do not throw', (t) => {
     ], ({x}) => [x])]
   })
 })
+
+test('referencing a previous generator', (t) => {
+  function * numbers () {
+    yield 1
+    yield 2
+    yield 3
+    yield 4
+    yield 5
+  }
+
+  t.plan(1)
+  const actual = forc([
+    'x', numbers(),
+    'y', ({x}) => [x]
+  ], ({x, y}) => x + y)
+  t.deepEqual([...actual], [2, 4, 6, 8, 10])
+})
