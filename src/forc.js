@@ -1,4 +1,4 @@
-import 'babel-polyfill'
+import 'babel-regenerator-runtime'
 import pairs from './utils/pairs'
 import resolve from './utils/resolve'
 import applyLets from './utils/applyLets'

@@ -38,6 +38,19 @@ forc(['x', [1, 2, 3, 4, 5],
 
 Using ES6 destructuring and arrow functions obviously makes this bearable, without that it'd be fairly messy to write. The Clojure syntax is still better, but this could help a lot if you're dealing with a lot of nested mapping or filters.
 
+## Usage
+
+This is an ES6 project compiled with [Babel][] but it's compiled to ES5 upon publishing of the package. This means you can use the project with or without Babel, it is not required to use `forc`.
+
+ * Install the package with `npm install --save forc`
+ * Import the function...
+  * ES6: `import forc from 'forc'`
+  * ES5: `var forc = require('forc').default` (note the use of `.default`)
+  * Browsers: Use [webpack][] or [browserify][] with your chosen import method
+ * Now read the examples found in here, the tests or the [Clojure for][clj-for] documentation to learn how to use everything
+
+If you're planning on using this with ES5 you may want to reconsider. I'm not sure how easy it is to use generators and iterables pre-ES6, but I'd imagine it's not great.
+
 ## Examples
 
 These examples can also be found in `./test/examples.js`, you can find a lot in the test directory, actually. I'd recommend having a little read.
@@ -126,3 +139,6 @@ Do what you want. Learn as much as you can. Unlicense more software.
 [clj-for]: https://clojuredocs.org/clojure.core/for
 [iterable]: https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Iteration_protocols
 [lazyseq]: http://clojure.org/reference/sequences
+[babel]: https://babeljs.io/
+[webpack]: https://webpack.github.io/
+[browserify]: http://browserify.org/
